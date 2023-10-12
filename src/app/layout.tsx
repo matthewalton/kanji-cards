@@ -1,3 +1,4 @@
+import Sidebar from "@/components/layout/Sidebar";
 import "./globals.css";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import type { Metadata } from "next";
@@ -17,7 +18,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <Sidebar />
+
+        <div className="h-full min-h-screen pl-24 bg-zinc-100 dark:bg-gray-900 text-zinc-800 dark:text-gray-200">
+          <div className="grid grid-cols-3 gap-4 p-8">
+            <section className="col-span-3">{children}</section>
+          </div>
+        </div>
+      </body>
     </html>
   );
 }
