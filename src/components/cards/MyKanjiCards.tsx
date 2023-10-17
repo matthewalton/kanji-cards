@@ -1,24 +1,42 @@
-import KanjiCardDTO from "@/app/types/KanjiCardDTO";
+"use client";
+
+import KanjiCardDTO from "../../app/types/KanjiCardDTO";
+import StudyKanjiCard from "./StudyKanjiCard";
+import { useState } from "react";
 import KanjiCard from "./KanjiCard";
 
-async function getCards() {
-  const res = await fetch(process.env.URL + "/api/cards", { method: "GET" });
-  const data = await res.json();
-  return data.cards;
-}
+export default function MyKanjiCards({ cards }: { cards: KanjiCardDTO[] }) {
+  const [activeCard, setActiveCard] = useState<KanjiCardDTO | null>(null);
 
-export default async function MyKanjiCards() {
-  const cards = await getCards();
+  const handleCardClick = (cardData: KanjiCardDTO) => {
+    setActiveCard(cardData);
+  };
+
+  const handleStudyCardClick = () => {
+    setActiveCard(null);
+  };
 
   return (
-    <div className="flex flex-row flex-wrap gap-3">
-      {cards.length > 0 ? (
-        cards.map((card: KanjiCardDTO) => {
-          return <KanjiCard key={card.id} card={card} />;
-        })
+    <>
+      {activeCard ? (
+        <StudyKanjiCard card={activeCard} onCardClick={handleStudyCardClick} />
       ) : (
-        <div>You do not have any cards!</div>
+        <div className="flex flex-row flex-wrap gap-3">
+          {cards.length > 0 ? (
+            cards.map((card: KanjiCardDTO) => {
+              return (
+                <KanjiCard
+                  key={card.id}
+                  card={card}
+                  onClick={() => handleCardClick(card)}
+                />
+              );
+            })
+          ) : (
+            <div>You do not have any cards!</div>
+          )}
+        </div>
       )}
-    </div>
+    </>
   );
 }

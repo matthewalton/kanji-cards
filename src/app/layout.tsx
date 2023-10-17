@@ -1,4 +1,4 @@
-import Sidebar from "@/components/layout/Sidebar";
+import Sidebar from "../components/layout/Sidebar";
 import "./globals.css";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import type { Metadata } from "next";
