@@ -2,8 +2,8 @@ import Image from "next/image";
 
 export default function Page() {
   return (
-    <main>
-      <div className="mb-4">
+    <main className="flex flex-col gap-5">
+      <div>
         <Image
           className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
           src="/images/kanji-cards.webp"
