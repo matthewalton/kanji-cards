@@ -1,0 +1,398 @@
+[
+  {
+    "question": "What is the kanji character for 'black'?",
+    "answer": "黒"
+  },
+  {
+    "question": "What is the kanji character for 'yellow'?",
+    "answer": "黄"
+  },
+  {
+    "question": "What is the kanji character for 'fish'?",
+    "answer": "魚"
+  },
+  {
+    "question": "What is the kanji character for 'tall' or 'high'?",
+    "answer": "高"
+  },
+  {
+    "question": "What is the kanji character for 'surprise'?",
+    "answer": "驚"
+  },
+  {
+    "question": "What is the kanji character for 'food'?",
+    "answer": "食"
+  },
+  {
+    "question": "What is the kanji character for 'airplane'?",
+    "answer": "飛行機"
+  },
+  {
+    "question": "What is the kanji character for 'wind'?",
+    "answer": "風"
+  },
+  {
+    "question": "What is the kanji character for 'music'?",
+    "answer": "音楽"
+  },
+  {
+    "question": "What is the kanji character for 'shoes'?",
+    "answer": "靴"
+  },
+  {
+    "question": "What is the kanji character for 'blue'?",
+    "answer": "青"
+  },
+  {
+    "question": "What is the kanji character for 'train'?",
+    "answer": "電車"
+  },
+  {
+    "question": "What is the kanji character for 'snow'?",
+    "answer": "雪"
+  },
+  {
+    "question": "What is the kanji character for 'rain'?",
+    "answer": "雨"
+  },
+  {
+    "question": "What is the kanji character for 'bank'?",
+    "answer": "銀行"
+  },
+  {
+    "question": "What is the kanji character for 'gold'?",
+    "answer": "金"
+  },
+  {
+    "question": "What is the kanji character for 'vegetables'?",
+    "answer": "野菜"
+  },
+  {
+    "question": "What is the kanji character for 'baseball'?",
+    "answer": "野球"
+  },
+  {
+    "question": "What is the kanji character for 'week'?",
+    "answer": "週"
+  },
+  {
+    "question": "What is the kanji character for 'car'?",
+    "answer": "車"
+  },
+  {
+    "question": "What is the kanji character for 'foot' or 'leg'?",
+    "answer": "足"
+  },
+  {
+    "question": "What is the kanji character for 'red'?",
+    "answer": "赤"
+  },
+  {
+    "question": "What is the kanji character for 'police'?",
+    "answer": "警察"
+  },
+  {
+    "question": "What is the kanji character for 'reading'?",
+    "answer": "読書"
+  },
+  {
+    "question": "What is the kanji character for 'good'?",
+    "answer": "良"
+  },
+  {
+    "question": "What is the kanji character for 'ship' or 'boat'?",
+    "answer": "船"
+  },
+  {
+    "question": "What is the kanji character for 'bicycle'?",
+    "answer": "自転車"
+  },
+  {
+    "question": "What is the kanji character for 'meat'?",
+    "answer": "肉"
+  },
+  {
+    "question": "What is the kanji character for 'ear'?",
+    "answer": "耳"
+  },
+  {
+    "question": "What is the kanji character for 'green'?",
+    "answer": "緑"
+  },
+  {
+    "question": "What is the kanji character for 'rice'?",
+    "answer": "米"
+  },
+  {
+    "question": "What is the kanji character for 'second'?",
+    "answer": "秒"
+  },
+  {
+    "question": "What is the kanji character for 'eye'?",
+    "answer": "目"
+  },
+  {
+    "question": "What is the kanji character for 'white'?",
+    "answer": "白"
+  },
+  {
+    "question": "What is the kanji character for 'hospital'?",
+    "answer": "病院"
+  },
+  {
+    "question": "What is the kanji character for 'tired'?",
+    "answer": "疲"
+  },
+  {
+    "question": "What is the kanji character for 'painter' or 'artist'?",
+    "answer": "画家"
+  },
+  {
+    "question": "What is the kanji character for 'student'?",
+    "answer": "生徒"
+  },
+  {
+    "question": "What is the kanji character for 'life' or 'birth'?",
+    "answer": "生"
+  },
+  {
+    "question": "What is the kanji character for 'father'?",
+    "answer": "父"
+  },
+  {
+    "question": "What is the kanji character for 'heat' or 'fever'?",
+    "answer": "熱"
+  },
+  {
+    "question": "What is the kanji character for 'fire'?",
+    "answer": "火"
+  },
+  {
+    "question": "What is the kanji character for 'firefighter'?",
+    "answer": "消防士"
+  },
+  {
+    "question": "What is the kanji character for 'swimming'?",
+    "answer": "水泳"
+  },
+  {
+    "question": "What is the kanji character for 'water'?",
+    "answer": "水"
+  },
+  {
+    "question": "What is the kanji character for 'mother'?",
+    "answer": "母"
+  },
+  {
+    "question": "What is the kanji character for 'singer'?",
+    "answer": "歌手"
+  },
+  {
+    "question": "What is the kanji character for 'fruit'?",
+    "answer": "果"
+  },
+  {
+    "question": "What is the kanji character for 'book'?",
+    "answer": "本"
+  },
+  {
+    "question": "What is the kanji character for 'tree'?",
+    "answer": "木"
+  },
+  {
+    "question": "What is the kanji character for 'clothing'?",
+    "answer": "服"
+  },
+  {
+    "question": "What is the kanji character for 'moon'?",
+    "answer": "月"
+  },
+  {
+    "question": "What is the kanji character for 'month'?",
+    "answer": "月"
+  },
+  {
+    "question": "What is the kanji character for 'cloudy'?",
+    "answer": "曇"
+  },
+  {
+    "question": "What is the kanji character for 'clear' or 'sunny'?",
+    "answer": "晴"
+  },
+  {
+    "question": "What is the kanji character for 'time' or 'hour'?",
+    "answer": "時"
+  },
+  {
+    "question": "What is the kanji character for 'movie'?",
+    "answer": "映画"
+  },
+  {
+    "question": "What is the kanji character for 'old'?",
+    "answer": "旧"
+  },
+  {
+    "question": "What is the kanji character for 'day'?",
+    "answer": "日"
+  },
+  {
+    "question": "What is the kanji character for 'sun'?",
+    "answer": "日"
+  },
+  {
+    "question": "What is the kanji character for 'new'?",
+    "answer": "新"
+  },
+  {
+    "question": "What is the kanji character for 'cook' or 'chef'?",
+    "answer": "料理人"
+  },
+  {
+    "question": "What is the kanji character for 'hand'?",
+    "answer": "手"
+  },
+  {
+    "question": "What is the kanji character for 'sad'?",
+    "answer": "悲"
+  },
+  {
+    "question": "What is the kanji character for 'bad'?",
+    "answer": "悪"
+  },
+  {
+    "question": "What is the kanji character for 'anger' or 'angry'?",
+    "answer": "怒"
+  },
+  {
+    "question": "What is the kanji character for 'heart' or 'mind'?",
+    "answer": "心"
+  },
+  {
+    "question": "What is the kanji character for 'year'?",
+    "answer": "年"
+  },
+  {
+    "question": "What is the kanji character for 'river'?",
+    "answer": "川"
+  },
+  {
+    "question": "What is the kanji character for 'mountain'?",
+    "answer": "山"
+  },
+  {
+    "question": "What is the kanji character for 'small'?",
+    "answer": "小"
+  },
+  {
+    "question": "What is the kanji character for 'sleep'?",
+    "answer": "寝"
+  },
+  {
+    "question": "What is the kanji character for 'house'?",
+    "answer": "家"
+  },
+  {
+    "question": "What is the kanji character for 'home'?",
+    "answer": "家"
+  },
+  {
+    "question": "What is the kanji character for 'study' or 'learn'?",
+    "answer": "学"
+  },
+  {
+    "question": "What is the kanji character for 'school'?",
+    "answer": "学"
+  },
+  {
+    "question": "What is the kanji character for 'happy'?",
+    "answer": "嬉"
+  },
+  {
+    "question": "What is the kanji character for 'older sister'?",
+    "answer": "姉"
+  },
+  {
+    "question": "What is the kanji character for 'heaven' or 'sky'?",
+    "answer": "天"
+  },
+  {
+    "question": "What is the kanji character for 'big'?",
+    "answer": "大"
+  },
+  {
+    "question": "What is the kanji character for 'earth' or 'soil'?",
+    "answer": "土"
+  },
+  {
+    "question": "What is the kanji character for 'mouth'?",
+    "answer": "口"
+  },
+  {
+    "question": "What is the kanji character for 'doctor'?",
+    "answer": "医者"
+  },
+  {
+    "question": "What is the kanji character for 'minute'?",
+    "answer": "分"
+  },
+  {
+    "question": "What is the kanji character for 'cold'?",
+    "answer": "冷"
+  },
+  {
+    "question": "What is the kanji character for 'park'?",
+    "answer": "公園"
+  },
+  {
+    "question": "What is the kanji character for 'teacher'?",
+    "answer": "先生"
+  },
+  {
+    "question": "What is the kanji character for 'before' or 'previous'?",
+    "answer": "先"
+  },
+  {
+    "question": "What is the kanji character for 'older brother'?",
+    "answer": "兄"
+  },
+  {
+    "question": "What is the kanji character for 'low'?",
+    "answer": "低"
+  },
+  {
+    "question": "What is the kanji character for 'work' or 'job'?",
+    "answer": "仕事"
+  },
+  {
+    "question": "What is the kanji character for 'person'?",
+    "answer": "人"
+  },
+  {
+    "question": "What is the kanji character for 'up' or 'above'?",
+    "answer": "上"
+  },
+  {
+    "question": "What is the kanji character for 'tennis'?",
+    "answer": "テニス"
+  },
+  {
+    "question": "What is the kanji character for 'pants'?",
+    "answer": "ズボン"
+  },
+  {
+    "question": "What is the kanji character for 'shirt'?",
+    "answer": "シャツ"
+  },
+  {
+    "question": "What is the kanji character for 'soccer'?",
+    "answer": "サッカー"
+  },
+  {
+    "question": "What is the kanji character for 'game'?",
+    "answer": "ゲーム"
+  },
+  {
+    "question": "What is the kanji character for 'engineer'?",
+    "answer": "エンジニア"
+  }
+]

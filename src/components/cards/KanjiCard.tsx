@@ -1,8 +1,8 @@
 import React from "react";
-import KanjiCardDTO from "../../app/types/KanjiCardDTO";
+import Kanji from "../../app/types/Kanji";
 
 interface KanjiCardProps {
-  card: KanjiCardDTO;
+  card: Kanji;
   onClick: () => void;
 }
 

@@ -1,14 +1,14 @@
 "use client";
 
-import KanjiCardDTO from "../../app/types/KanjiCardDTO";
+import Kanji from "../../app/types/Kanji";
 import StudyKanjiCard from "./StudyKanjiCard";
 import { useState } from "react";
 import KanjiCard from "./KanjiCard";
 
-export default function MyKanjiCards({ cards }: { cards: KanjiCardDTO[] }) {
-  const [activeCard, setActiveCard] = useState<KanjiCardDTO | null>(null);
+export default function MyKanjiCards({ cards }: { cards: Kanji[] }) {
+  const [activeCard, setActiveCard] = useState<Kanji | null>(null);
 
-  const handleCardClick = (cardData: KanjiCardDTO) => {
+  const handleCardClick = (cardData: Kanji) => {
     setActiveCard(cardData);
   };
 
@@ -23,7 +23,7 @@ export default function MyKanjiCards({ cards }: { cards: KanjiCardDTO[] }) {
       ) : (
         <div className="flex flex-row flex-wrap gap-3">
           {cards.length > 0 ? (
-            cards.map((card: KanjiCardDTO) => {
+            cards.map((card: Kanji) => {
               return (
                 <KanjiCard
                   key={card.id}

@@ -1,10 +1,19 @@
+import { KanjiQuestion } from "@/app/types/Challenge";
 import ChallengeScreenActive from "./screens/ChallengeScreenActive";
 import ChallengeScreenStart from "./screens/ChallengeScreenStart";
 
 type Props = {
-  isActive: boolean;
+  question: KanjiQuestion | null;
 };
 
-export default function ChallengeScreen({ isActive }: Props) {
-  return <>{isActive ? <ChallengeScreenActive /> : <ChallengeScreenStart />}</>;
+export default function ChallengeScreen({ question }: Props) {
+  return (
+    <div className="flex justify-center">
+      {question ? (
+        <ChallengeScreenActive question={question} />
+      ) : (
+        <ChallengeScreenStart />
+      )}
+    </div>
+  );
 }

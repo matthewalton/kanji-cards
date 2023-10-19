@@ -19,11 +19,11 @@ export default function ChallengeControls({
   };
 
   const handleClickShuffle = () => {
-    onStart();
+    onShuffle();
   };
 
   const handleClickNewQuestion = () => {
-    onStart();
+    onNewQuestion();
   };
 
   return (

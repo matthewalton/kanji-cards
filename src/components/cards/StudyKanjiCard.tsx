@@ -1,10 +1,10 @@
 import React from "react";
-import KanjiCardDTO from "../../app/types/KanjiCardDTO";
+import Kanji from "../../app/types/Kanji";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 
 interface Props {
-  card: KanjiCardDTO;
+  card: Kanji;
   onCardClick: () => void;
 }
 
