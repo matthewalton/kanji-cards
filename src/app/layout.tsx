@@ -23,12 +23,10 @@ export default function RootLayout({
         <Sidebar />
 
         <div className="h-full min-h-screen pl-24 bg-zinc-100 dark:bg-gray-900 text-zinc-800 dark:text-gray-200">
-          <section className="grid grid-cols-3 gap-4 p-8">
-            <div className="col-span-2">{children}</div>
+          <section className="flex gap-4 p-8">
+            <div className="flex-grow">{children}</div>
 
-            <div className="col-span-1">
-              <ActionMenu />
-            </div>
+            <ActionMenu />
           </section>
         </div>
       </body>
