@@ -24,6 +24,7 @@ async function getDeck(): Promise<Kanji[]> {
 export default function Challenge() {
   const [question, setQuestion] = useState<KanjiQuestion | null>(null);
   const [deck, setDeck] = useState<Kanji[]>([]);
+  const [selectedKanji, setSelectedKanji] = useState<Kanji | null>(null);
 
   const handleStart = () => {
     handleNewDeck();
@@ -60,7 +61,13 @@ export default function Challenge() {
         className="absolute bottom-0 flex flex-col gap-5"
         style={{ padding: "inherit" }}
       >
-        {deck.length > 0 && <ChallengeDeck deck={deck} />}
+        {deck.length > 0 && (
+          <ChallengeDeck
+            deck={deck}
+            selectedKanji={selectedKanji}
+            onSelected={setSelectedKanji}
+          />
+        )}
 
         <ChallengeControls
           isActive={!!question}

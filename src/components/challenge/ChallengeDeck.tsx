@@ -6,18 +6,22 @@ import { useState } from "react";
 
 type Props = {
   deck: Kanji[];
+  selectedKanji: Kanji | null;
+  onSelected: (kanji: Kanji | null) => void;
 };
 
-export default function ChallengeDeck({ deck }: Props) {
-  const [selectedKanjiId, setSelectedKanjiId] = useState<number>(0);
-
+export default function ChallengeDeck({
+  deck,
+  selectedKanji,
+  onSelected,
+}: Props) {
   const handleCardClick = (kanji: Kanji) => {
-    if (!selectedKanjiId) {
-      setSelectedKanjiId(kanji.id);
+    if (!selectedKanji) {
+      onSelected(kanji);
       return;
     }
 
-    setSelectedKanjiId(0);
+    onSelected(null);
   };
 
   return (
@@ -27,20 +31,20 @@ export default function ChallengeDeck({ deck }: Props) {
           <div
             className={
               "-mx-2 transition ease-in-out " +
-              (selectedKanjiId === kanji.id
+              (selectedKanji === kanji
                 ? "z-10 scale-110 -translate-y-2 "
                 : " ") +
-              (selectedKanjiId && selectedKanjiId !== kanji.id
+              (selectedKanji && selectedKanji !== kanji
                 ? "blur-sm brightness-50 "
                 : " ") +
-              (!selectedKanjiId ? "hover:-translate-y-1" : "")
+              (!selectedKanji ? "hover:-translate-y-1" : "")
             }
             key={kanji.id}
           >
             <KanjiCard
               card={kanji}
               onClick={() => handleCardClick(kanji)}
-              clickable={!selectedKanjiId || selectedKanjiId === kanji.id}
+              clickable={!selectedKanji || selectedKanji === kanji}
             />
           </div>
         );
