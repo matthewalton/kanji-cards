@@ -2,7 +2,6 @@
 
 import Kanji from "@/app/types/Kanji";
 import KanjiCard from "../cards/KanjiCard";
-import { useState } from "react";
 
 type Props = {
   deck: Kanji[];

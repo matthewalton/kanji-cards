@@ -45,6 +45,10 @@ export default function Challenge() {
     setQuestion(newQuestion);
   }, [deck]);
 
+  const handleMarkQuestion = () => {
+    throw new Error("Function not yet implemented");
+  };
+
   useEffect(() => {
     if (deck.length > 0) {
       handleNewQuestion();
@@ -71,9 +75,12 @@ export default function Challenge() {
 
         <ChallengeControls
           isActive={!!question}
-          onStart={() => handleStart()}
-          onShuffle={() => handleNewDeck()}
-          onNewQuestion={() => handleNewQuestion()}
+          isSelected={!!selectedKanji}
+          onStart={handleStart}
+          onShuffle={handleNewDeck}
+          onNewQuestion={handleNewQuestion}
+          onCancel={() => setSelectedKanji(null)}
+          onConfirm={handleMarkQuestion}
         />
       </div>
     </>

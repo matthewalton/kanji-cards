@@ -1,41 +1,40 @@
 import ChallengeControlsActive from "./controls/ChallengeControlActive";
+import ChallengeControlsSelected from "./controls/ChallengeControlSelected";
 import ChallengeControlsStart from "./controls/ChallengeControlStart";
 
 type Props = {
   isActive: boolean;
+  isSelected: boolean;
   onStart: () => void;
   onShuffle: () => void;
   onNewQuestion: () => void;
+  onCancel: () => void;
+  onConfirm: () => void;
 };
 
 export default function ChallengeControls({
   isActive,
+  isSelected,
   onStart,
   onShuffle,
   onNewQuestion,
+  onCancel,
+  onConfirm,
 }: Props) {
-  const handleClickStart = () => {
-    onStart();
-  };
-
-  const handleClickShuffle = () => {
-    onShuffle();
-  };
-
-  const handleClickNewQuestion = () => {
-    onNewQuestion();
-  };
-
   return (
     <div className="flex gap-2 justify-center">
-      {isActive ? (
+      {isActive && !isSelected && (
         <ChallengeControlsActive
-          onShuffle={handleClickShuffle}
-          onNewQuestion={handleClickNewQuestion}
+          onShuffle={onShuffle}
+          onNewQuestion={onNewQuestion}
         />
-      ) : (
-        <ChallengeControlsStart onClick={handleClickStart} />
       )}
+
+      {isSelected && (
+        <ChallengeControlsSelected onCancel={onCancel} onConfirm={onConfirm} />
+      )}
+
+      {!isActive && <ChallengeControlsStart onClick={onStart} />}
     </div>
   );
 }
