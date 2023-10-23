@@ -9,15 +9,15 @@ type Props = {
 };
 
 export default function ChallengeDeck({ deck }: Props) {
-  const [selectedCardId, setSelectedCardId] = useState<number | null>(null);
+  const [selectedKanjiId, setSelectedKanjiId] = useState<number>(0);
 
-  const handleCardClick = (card: Kanji) => {
-    if (selectedCardId === card.id) {
-      setSelectedCardId(null);
+  const handleCardClick = (kanji: Kanji) => {
+    if (!selectedKanjiId) {
+      setSelectedKanjiId(kanji.id);
       return;
     }
 
-    setSelectedCardId(card.id);
+    setSelectedKanjiId(0);
   };
 
   return (
@@ -27,14 +27,21 @@ export default function ChallengeDeck({ deck }: Props) {
           <div
             className={
               "-mx-2 transition ease-in-out " +
-              (selectedCardId === kanji.id ? "z-10 -translate-y-2 " : "") +
-              (selectedCardId && selectedCardId !== kanji.id
-                ? "hover:-translate-y-1 "
-                : "hover:z-10 hover:-translate-y-2 ")
+              (selectedKanjiId === kanji.id
+                ? "z-10 scale-110 -translate-y-2 "
+                : " ") +
+              (selectedKanjiId && selectedKanjiId !== kanji.id
+                ? "blur-sm brightness-50 "
+                : " ") +
+              (!selectedKanjiId ? "hover:-translate-y-1" : "")
             }
             key={kanji.id}
           >
-            <KanjiCard card={kanji} onClick={() => handleCardClick(kanji)} />
+            <KanjiCard
+              card={kanji}
+              onClick={() => handleCardClick(kanji)}
+              clickable={!selectedKanjiId || selectedKanjiId === kanji.id}
+            />
           </div>
         );
       })}
