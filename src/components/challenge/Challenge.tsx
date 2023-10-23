@@ -52,16 +52,23 @@ export default function Challenge() {
 
   return (
     <>
-      <ChallengeScreen question={question} />
+      <div className="self-center my-auto">
+        <ChallengeScreen question={question} />
+      </div>
 
-      {deck.length > 0 && <ChallengeDeck deck={deck} />}
+      <div
+        className="absolute bottom-0 flex flex-col gap-5"
+        style={{ padding: "inherit" }}
+      >
+        {deck.length > 0 && <ChallengeDeck deck={deck} />}
 
-      <ChallengeControls
-        isActive={!!question}
-        onStart={() => handleStart()}
-        onShuffle={() => handleNewDeck()}
-        onNewQuestion={() => handleNewQuestion()}
-      />
+        <ChallengeControls
+          isActive={!!question}
+          onStart={() => handleStart()}
+          onShuffle={() => handleNewDeck()}
+          onNewQuestion={() => handleNewQuestion()}
+        />
+      </div>
     </>
   );
 }

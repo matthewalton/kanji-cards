@@ -11,12 +11,10 @@ export default function Page() {
       </Link>
 
       <div
-        className="card border-4 flex gap-5 items-center justify-center flex-col bg-zinc-50 dark:bg-gray-950 dark:border-gray-500"
-        style={{ minHeight: "50vh" }}
+        className="card border-4 flex justify-center text-center relative lg:p-10 bg-zinc-50 dark:bg-gray-950 dark:border-gray-500"
+        style={{ minHeight: "75vh" }}
       >
-        <div className="flex flex-col gap-5 lg:px-40">
-          <Challenge />
-        </div>
+        <Challenge />
       </div>
     </main>
   );
