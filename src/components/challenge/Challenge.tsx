@@ -39,11 +39,6 @@ export default function Challenge({ children }: { children: React.ReactNode }) {
   const [usedKanji, setUsedKanji] = useState<Kanji[]>([]);
   const [hasStarted, setHasStarted] = useState(false);
 
-  const handleStart = () => {
-    setHasStarted(true);
-    handleNewDeck();
-  };
-
   const handleReset = () => {
     setScore(0);
     setSelectedKanji(null);
@@ -153,7 +148,9 @@ export default function Challenge({ children }: { children: React.ReactNode }) {
         )}
 
         <div className="flex flex-col gap-3 mt-auto">
-          {!hasStarted && <ChallengeControlsStart onClick={handleStart} />}
+          {!hasStarted && (
+            <ChallengeControlsStart onClick={() => setHasStarted(true)} />
+          )}
           {hasStarted && <ChallengeControlRestart onClick={handleReset} />}
           {children}
         </div>
