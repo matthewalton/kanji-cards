@@ -1,21 +1,17 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBackwardStep } from "@fortawesome/free-solid-svg-icons";
-import Link from "next/link";
 import Challenge from "@/components/challenge/Challenge";
+import Link from "next/link";
 
 export default function Page() {
   return (
-    <main className="flex flex-col gap-5">
-      <Link href="/cards">
-        <FontAwesomeIcon icon={faBackwardStep} className="text-3xl" />
-      </Link>
-
-      <div
-        className="card border-4 flex justify-center text-center relative lg:p-10 bg-zinc-50 dark:bg-gray-950 dark:border-gray-500"
-        style={{ minHeight: "75vh" }}
-      >
-        <Challenge />
-      </div>
+    <main className="grid grid-cols-3 gap-5">
+      <Challenge>
+        <Link
+          href="/cards"
+          className="card text-center shadow-sm rounded-4 transition ease-in-out text-2xl font-bold bg-red-500 hover:bg-red-600"
+        >
+          End Challenge
+        </Link>
+      </Challenge>
     </main>
   );
 }
