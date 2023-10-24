@@ -13,8 +13,14 @@ export async function GET(request: NextRequest) {
     try {
       const searchParams = request.nextUrl.searchParams;
       const limit = searchParams.get("limit");
+      const excludeIds = searchParams.get("excludeIds");
 
       let query = "SELECT * FROM characters";
+
+      if (excludeIds) {
+        const excludedIds = excludeIds.split(",").map((id) => parseInt(id));
+        query += ` WHERE id NOT IN (${excludedIds.join(",")})`;
+      }
 
       if (limit) {
         query += ` ORDER BY RAND() LIMIT ${parseInt(limit)}`;

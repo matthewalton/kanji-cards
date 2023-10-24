@@ -3,20 +3,30 @@
 import { useCallback, useEffect, useState } from "react";
 import ChallengeScreen from "./ChallengeScreen";
 import ChallengeControls from "./ChallengeControls";
+import ChallengeDeck from "./ChallengeDeck";
+import ChallengeStat from "./stats/ChallengeStat";
 import { KanjiQuestion } from "@/app/types/Challenge";
 import Kanji from "@/app/types/Kanji";
-import ChallengeDeck from "./ChallengeDeck";
+import ChallengeControlRestart from "./controls/ChallengeControlRestart";
+import ChallengeControlsStart from "./controls/ChallengeControlStart";
 
 async function getQuestion(kanji: Kanji): Promise<KanjiQuestion> {
   const res = await fetch(`/api/challenge/question?kanjiId=${kanji.id}`, {
     method: "GET",
   });
+
   const data = await res.json();
   return data;
 }
 
-async function getDeck(): Promise<Kanji[]> {
-  const res = await fetch("/api/cards?limit=5", { method: "GET" });
+async function getDeck(excludeIds: number[]): Promise<Kanji[]> {
+  const res = await fetch(
+    `/api/kanji?limit=5&excludeIds=${excludeIds.join()}`,
+    {
+      method: "GET",
+    }
+  );
+
   const data = await res.json();
   return data.cards;
 }
@@ -25,15 +35,28 @@ export default function Challenge({ children }: { children: React.ReactNode }) {
   const [question, setQuestion] = useState<KanjiQuestion | null>(null);
   const [deck, setDeck] = useState<Kanji[]>([]);
   const [selectedKanji, setSelectedKanji] = useState<Kanji | null>(null);
+  const [score, setScore] = useState<number>(0);
+  const [usedKanji, setUsedKanji] = useState<Kanji[]>([]);
+  const [hasStarted, setHasStarted] = useState(false);
 
   const handleStart = () => {
+    setHasStarted(true);
     handleNewDeck();
   };
 
-  const handleNewDeck = async () => {
-    const newDeck = await getDeck();
-    setDeck(newDeck);
+  const handleReset = () => {
+    setScore(0);
+    setSelectedKanji(null);
+    setUsedKanji([]);
+    setDeck([]);
+    setQuestion(null);
+    setHasStarted(false);
   };
+
+  const handleNewDeck = useCallback(async () => {
+    const newDeck = await getDeck(usedKanji.map((kanji) => kanji.id));
+    setDeck(newDeck);
+  }, [usedKanji]);
 
   const handleNewQuestion = useCallback(async () => {
     if (deck.length === 0) return;
@@ -46,8 +69,31 @@ export default function Challenge({ children }: { children: React.ReactNode }) {
   }, [deck]);
 
   const handleMarkQuestion = () => {
-    throw new Error("Function not yet implemented");
+    if (!question) {
+      throw new Error("Failed to mark question. No question was set");
+    }
+
+    if (!selectedKanji) {
+      throw new Error("Failed to mark question. No answer selected.");
+    }
+
+    if (question.answer === selectedKanji.kanji) {
+      setScore(score + 1);
+    }
+
+    setUsedKanji([...usedKanji, selectedKanji]);
+    setSelectedKanji(null);
   };
+
+  useEffect(() => {
+    if (!hasStarted) return;
+
+    const fetchData = async () => {
+      await handleNewDeck();
+    };
+
+    fetchData();
+  }, [usedKanji, handleNewDeck, hasStarted]);
 
   useEffect(() => {
     if (deck.length > 0) {
@@ -57,7 +103,7 @@ export default function Challenge({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      <div className="col-span-2">
+      <div className="col-span-3">
         <div
           className="card border-4 flex justify-center text-center relative lg:p-10 bg-zinc-50 dark:bg-gray-950 dark:border-gray-500"
           style={{ minHeight: "75vh" }}
@@ -81,7 +127,6 @@ export default function Challenge({ children }: { children: React.ReactNode }) {
             <ChallengeControls
               isActive={!!question}
               isSelected={!!selectedKanji}
-              onStart={handleStart}
               onShuffle={handleNewDeck}
               onNewQuestion={handleNewQuestion}
               onCancel={() => setSelectedKanji(null)}
@@ -92,10 +137,26 @@ export default function Challenge({ children }: { children: React.ReactNode }) {
       </div>
 
       <div className="col-span-1 flex flex-col gap-3">
-        <div className="card shadow-sm border-4 rounded-4 bg-zinc-50 dark:border-gray-600 dark:bg-gray-800">
-          This is the kanji cards menu!
+        {hasStarted && (
+          <>
+            <ChallengeStat text="Score" stat={score.toString()} />
+
+            <ChallengeStat
+              text="Kanji Used"
+              stat={
+                usedKanji.length
+                  ? usedKanji.map((kanji) => kanji.kanji).join()
+                  : "-"
+              }
+            />
+          </>
+        )}
+
+        <div className="flex flex-col gap-3 mt-auto">
+          {!hasStarted && <ChallengeControlsStart onClick={handleStart} />}
+          {hasStarted && <ChallengeControlRestart onClick={handleReset} />}
+          {children}
         </div>
-        {children}
       </div>
     </>
   );

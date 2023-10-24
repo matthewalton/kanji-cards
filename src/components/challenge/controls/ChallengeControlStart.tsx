@@ -3,14 +3,10 @@ type Props = {
 };
 
 export default function ChallengeControlsStart({ onClick }: Props) {
-  const handleClick = () => {
-    onClick();
-  };
-
   return (
     <button
-      className="bg-green-600 hover:bg-green-700 transition ease-in-out text-gray-100 text-3xl px-6 py-2 rounded font-bold"
-      onClick={() => handleClick()}
+      className="card text-center shadow-sm rounded-4 transition ease-in-out text-2xl font-bold bg-green-600 hover:bg-green-700"
+      onClick={() => onClick()}
     >
       Start
     </button>

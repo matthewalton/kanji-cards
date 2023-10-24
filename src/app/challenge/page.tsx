@@ -1,16 +1,12 @@
 import Challenge from "@/components/challenge/Challenge";
-import Link from "next/link";
+import ChallengeControlQuit from "@/components/challenge/controls/ChallengeControlQuit";
+import ChallengeControlRestart from "@/components/challenge/controls/ChallengeControlRestart";
 
 export default function Page() {
   return (
-    <main className="grid grid-cols-3 gap-5">
+    <main className="grid grid-cols-4 gap-5">
       <Challenge>
-        <Link
-          href="/cards"
-          className="card text-center shadow-sm rounded-4 transition ease-in-out text-2xl font-bold bg-red-500 hover:bg-red-600"
-        >
-          End Challenge
-        </Link>
+        <ChallengeControlQuit />
       </Challenge>
     </main>
   );

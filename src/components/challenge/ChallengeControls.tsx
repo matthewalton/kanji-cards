@@ -1,11 +1,9 @@
 import ChallengeControlsActive from "./controls/ChallengeControlActive";
 import ChallengeControlsSelected from "./controls/ChallengeControlSelected";
-import ChallengeControlsStart from "./controls/ChallengeControlStart";
 
 type Props = {
   isActive: boolean;
   isSelected: boolean;
-  onStart: () => void;
   onShuffle: () => void;
   onNewQuestion: () => void;
   onCancel: () => void;
@@ -15,7 +13,6 @@ type Props = {
 export default function ChallengeControls({
   isActive,
   isSelected,
-  onStart,
   onShuffle,
   onNewQuestion,
   onCancel,
@@ -33,8 +30,6 @@ export default function ChallengeControls({
       {isSelected && (
         <ChallengeControlsSelected onCancel={onCancel} onConfirm={onConfirm} />
       )}
-
-      {!isActive && <ChallengeControlsStart onClick={onStart} />}
     </div>
   );
 }
