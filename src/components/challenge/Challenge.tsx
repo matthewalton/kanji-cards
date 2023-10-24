@@ -140,7 +140,7 @@ export default function Challenge({ children }: { children: React.ReactNode }) {
               text="Kanji Used"
               stat={
                 usedKanji.length
-                  ? usedKanji.map((kanji) => kanji.kanji).join()
+                  ? usedKanji.map((kanji) => kanji.kanji).join(" , ")
                   : "-"
               }
             />
