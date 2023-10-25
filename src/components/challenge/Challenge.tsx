@@ -4,10 +4,9 @@ import { useCallback, useEffect, useState } from "react";
 import ChallengeScreen from "./ChallengeScreen";
 import ChallengeControls from "./ChallengeControls";
 import ChallengeDeck from "./ChallengeDeck";
-import ChallengeStat from "./stats/ChallengeStat";
-import ChallengeControlRestart from "./controls/ChallengeControlRestart";
-import ChallengeControlsStart from "./controls/ChallengeControlStart";
 import ChallengeAnswer from "./ChallengeAnswer";
+import ChallengeButtons from "./ChallengeButtons";
+import ChallengeStats from "./ChallengeStats";
 import { KanjiQuestion, QuestionHistory } from "@/app/types/Challenge";
 import Kanji from "@/app/types/Kanji";
 
@@ -34,11 +33,14 @@ async function getDeck(excludeIds: number[]): Promise<Kanji[]> {
 
 export default function Challenge({ children }: { children: React.ReactNode }) {
   const [question, setQuestion] = useState<KanjiQuestion | null>(null);
+  const [questionHistory, setQuestionHistory] = useState<QuestionHistory[]>([]);
+
   const [selectedKanji, setSelectedKanji] = useState<Kanji | null>(null);
   const [deck, setDeck] = useState<Kanji[]>([]);
+
   const [score, setScore] = useState<number>(0);
   const [hasStarted, setHasStarted] = useState(false);
-  const [questionHistory, setQuestionHistory] = useState<QuestionHistory[]>([]);
+  const [showResult, setShowResult] = useState<boolean>(false);
 
   const handleReset = () => {
     setScore(0);
@@ -94,6 +96,8 @@ export default function Challenge({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (!hasStarted) return;
 
+    setShowResult(true);
+
     const fetchData = async () => {
       await handleNewDeck();
     };
@@ -114,8 +118,16 @@ export default function Challenge({ children }: { children: React.ReactNode }) {
           className="card border-4 flex justify-center text-center relative lg:p-10 bg-zinc-50 dark:bg-gray-950 dark:border-gray-500"
           style={{ minHeight: "75vh" }}
         >
-          <div className="absolute top-0">
-            <ChallengeAnswer />
+          <div className="absolute top-0" style={{ padding: "inherit" }}>
+            {questionHistory.length > 0 && (
+              <ChallengeAnswer
+                show={showResult}
+                questionHistoryItem={
+                  questionHistory[questionHistory.length - 1]
+                }
+                onDisplayTimeout={() => setShowResult(false)}
+              />
+            )}
           </div>
 
           <div className="self-center my-auto">
@@ -147,30 +159,19 @@ export default function Challenge({ children }: { children: React.ReactNode }) {
       </div>
 
       <div className="col-span-1 flex flex-col gap-3">
-        {hasStarted && (
-          <>
-            <ChallengeStat text="Score" stat={score.toString()} />
+        <ChallengeStats
+          hasStarted={hasStarted}
+          score={score}
+          questionHistory={questionHistory}
+        />
 
-            <ChallengeStat
-              text="Kanji Used"
-              stat={
-                questionHistory.length
-                  ? questionHistory
-                      .map((historyItem) => historyItem.userAnswer.kanji)
-                      .join(" , ")
-                  : "-"
-              }
-            />
-          </>
-        )}
-
-        <div className="flex flex-col gap-3 mt-auto">
-          {!hasStarted && (
-            <ChallengeControlsStart onClick={() => setHasStarted(true)} />
-          )}
-          {hasStarted && <ChallengeControlRestart onClick={handleReset} />}
+        <ChallengeButtons
+          hasStarted={hasStarted}
+          onStartClick={() => setHasStarted(true)}
+          onRestartClick={handleReset}
+        >
           {children}
-        </div>
+        </ChallengeButtons>
       </div>
     </>
   );

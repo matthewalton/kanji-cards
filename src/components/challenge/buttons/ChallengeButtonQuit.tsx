@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function ChallengeControlQuit() {
+export default function ChallengeButtonQuit() {
   return (
     <Link
       href="/cards"

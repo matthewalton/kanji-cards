@@ -1,12 +1,11 @@
 import Challenge from "@/components/challenge/Challenge";
-import ChallengeControlQuit from "@/components/challenge/controls/ChallengeControlQuit";
-import ChallengeControlRestart from "@/components/challenge/controls/ChallengeControlRestart";
+import ChallengeButtonQuit from "@/components/challenge/buttons/ChallengeButtonQuit";
 
 export default function Page() {
   return (
     <main className="grid grid-cols-4 gap-5">
       <Challenge>
-        <ChallengeControlQuit />
+        <ChallengeButtonQuit />
       </Challenge>
     </main>
   );
