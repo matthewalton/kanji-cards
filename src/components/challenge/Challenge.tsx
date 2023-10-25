@@ -40,7 +40,7 @@ export default function Challenge({ children }: { children: React.ReactNode }) {
 
   const [score, setScore] = useState<number>(0);
   const [hasStarted, setHasStarted] = useState(false);
-  const [showResult, setShowResult] = useState<boolean>(false);
+  const [showAnswer, setShowAnswer] = useState<boolean>(false);
 
   const handleReset = () => {
     setScore(0);
@@ -96,7 +96,7 @@ export default function Challenge({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (!hasStarted) return;
 
-    setShowResult(true);
+    setShowAnswer(true);
 
     const fetchData = async () => {
       await handleNewDeck();
@@ -121,11 +121,11 @@ export default function Challenge({ children }: { children: React.ReactNode }) {
           <div className="absolute top-0" style={{ padding: "inherit" }}>
             {questionHistory.length > 0 && (
               <ChallengeAnswer
-                show={showResult}
+                show={showAnswer}
                 questionHistoryItem={
                   questionHistory[questionHistory.length - 1]
                 }
-                onDisplayTimeout={() => setShowResult(false)}
+                onDisplayTimeout={() => setShowAnswer(false)}
               />
             )}
           </div>
