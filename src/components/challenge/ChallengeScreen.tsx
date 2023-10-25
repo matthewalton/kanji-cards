@@ -10,7 +10,7 @@ export default function ChallengeScreen({ question }: Props) {
   return (
     <div className="flex justify-center">
       {question ? (
-        <ChallengeScreenActive question={question} />
+        <ChallengeScreenActive key={question.question} question={question} />
       ) : (
         <ChallengeScreenStart />
       )}
