@@ -5,10 +5,11 @@ import ChallengeScreen from "./ChallengeScreen";
 import ChallengeControls from "./ChallengeControls";
 import ChallengeDeck from "./ChallengeDeck";
 import ChallengeStat from "./stats/ChallengeStat";
-import { KanjiQuestion } from "@/app/types/Challenge";
-import Kanji from "@/app/types/Kanji";
 import ChallengeControlRestart from "./controls/ChallengeControlRestart";
 import ChallengeControlsStart from "./controls/ChallengeControlStart";
+import ChallengeAnswer from "./ChallengeAnswer";
+import { KanjiQuestion, QuestionHistory } from "@/app/types/Challenge";
+import Kanji from "@/app/types/Kanji";
 
 async function getQuestion(kanji: Kanji): Promise<KanjiQuestion> {
   const res = await fetch(`/api/challenge/question?kanjiId=${kanji.id}`, {
@@ -33,25 +34,29 @@ async function getDeck(excludeIds: number[]): Promise<Kanji[]> {
 
 export default function Challenge({ children }: { children: React.ReactNode }) {
   const [question, setQuestion] = useState<KanjiQuestion | null>(null);
-  const [deck, setDeck] = useState<Kanji[]>([]);
   const [selectedKanji, setSelectedKanji] = useState<Kanji | null>(null);
+  const [deck, setDeck] = useState<Kanji[]>([]);
   const [score, setScore] = useState<number>(0);
-  const [usedKanji, setUsedKanji] = useState<Kanji[]>([]);
   const [hasStarted, setHasStarted] = useState(false);
+  const [questionHistory, setQuestionHistory] = useState<QuestionHistory[]>([]);
 
   const handleReset = () => {
     setScore(0);
     setSelectedKanji(null);
-    setUsedKanji([]);
     setDeck([]);
     setQuestion(null);
     setHasStarted(false);
+    setQuestionHistory([]);
   };
 
   const handleNewDeck = useCallback(async () => {
-    const newDeck = await getDeck(usedKanji.map((kanji) => kanji.id));
+    const excludeIds = questionHistory.map(
+      (historyItem) => historyItem.userAnswer.id
+    );
+
+    const newDeck = await getDeck(excludeIds);
     setDeck(newDeck);
-  }, [usedKanji]);
+  }, [questionHistory]);
 
   const handleNewQuestion = useCallback(async () => {
     if (deck.length === 0) return;
@@ -76,7 +81,13 @@ export default function Challenge({ children }: { children: React.ReactNode }) {
       setScore(score + 1);
     }
 
-    setUsedKanji([...usedKanji, selectedKanji]);
+    setQuestionHistory([
+      ...questionHistory,
+      {
+        question: question,
+        userAnswer: selectedKanji,
+      },
+    ]);
     setSelectedKanji(null);
   };
 
@@ -88,7 +99,7 @@ export default function Challenge({ children }: { children: React.ReactNode }) {
     };
 
     fetchData();
-  }, [usedKanji, handleNewDeck, hasStarted]);
+  }, [questionHistory, handleNewDeck, hasStarted]);
 
   useEffect(() => {
     if (deck.length > 0) {
@@ -103,6 +114,10 @@ export default function Challenge({ children }: { children: React.ReactNode }) {
           className="card border-4 flex justify-center text-center relative lg:p-10 bg-zinc-50 dark:bg-gray-950 dark:border-gray-500"
           style={{ minHeight: "75vh" }}
         >
+          <div className="absolute top-0">
+            <ChallengeAnswer />
+          </div>
+
           <div className="self-center my-auto">
             <ChallengeScreen question={question} />
           </div>
@@ -139,8 +154,10 @@ export default function Challenge({ children }: { children: React.ReactNode }) {
             <ChallengeStat
               text="Kanji Used"
               stat={
-                usedKanji.length
-                  ? usedKanji.map((kanji) => kanji.kanji).join(" , ")
+                questionHistory.length
+                  ? questionHistory
+                      .map((historyItem) => historyItem.userAnswer.kanji)
+                      .join(" , ")
                   : "-"
               }
             />

@@ -1,6 +1,13 @@
-interface KanjiQuestion {
+import Kanji from "./Kanji";
+
+type KanjiQuestion = {
   question: string;
   answer: string;
-}
+};
 
-export type { KanjiQuestion };
+type QuestionHistory = {
+  question: KanjiQuestion;
+  userAnswer: Kanji;
+};
+
+export type { KanjiQuestion, QuestionHistory };
